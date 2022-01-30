@@ -53,8 +53,8 @@ while inp:
     elif inp == "10":
         pnr = input("Enter customers social security number: ")
         acc_no = input("Enter account number from which you would like to see balance: ")
-        print("Account number: "+ mybank.get_account(pnr, acc_no).replace(", ", "\nAccount type: ", 1).replace(", ", "\nBalance: "))
-    elif inp == "10":
+        print("\nAccount number: "+ mybank.get_account(pnr, acc_no).replace(", ", "\nAccount type: ", 1).replace(", ", "\nBalance: "))
+    elif inp == "11":
         print("Good bye!")
         inp = False
     else:

@@ -106,7 +106,7 @@ class Bank():
             account = f"{i.id} {i.accountno} {i.accounttype} {i.balance}"
             #account = str(i.id) + " " + str(i.accountno) + " " + i.accounttype + " " + str(i.balance)
             self.acc_list.append(account)
-        print(self.acc_list)
+        #print(self.acc_list)
 
     def get_account(self, pnr, acc_no):
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
@@ -135,7 +135,7 @@ class Bank():
         with open(self.ctxt, "w") as f:
             f.writelines("%s\n" % line for line in self.customer_data)
 
-        print("New account added!")
+        print("\nNew account added!")
 
     def add_customer(self, name, pnr):
 
@@ -149,6 +149,7 @@ class Bank():
             textfile = open("customers.txt","a")
             textfile.write('\n' + Bank.get_new_id(self) + f':{name}:{pnr}:' + Bank.get_top_account(self) + f':debit account:0.0')
             textfile.close()
+            print("\nCustomer added!")
             return True
 
     def change_customer_name(self, newname, pnr):
@@ -210,7 +211,7 @@ class Bank():
                     new_bal = float(old_bal) + float(amount)
                     new_line = rad.replace(old_bal, str(new_bal))
                     self.customer_data[index] = new_line
-                    print(f"Deposit successful! \nOld balance: {old_bal} \nNew balace: {new_bal}")
+                    print(f"\nDeposit successful! \nOld balance: {old_bal} \nNew balace: {new_bal}")
             with open(self.ctxt, "w") as f:
                 f.writelines("%s\n" % l for l in self.customer_data)
 
@@ -230,11 +231,11 @@ class Bank():
                     #print(int(old_bal[:-2]))
                     new_bal = float(old_bal) - float(amount)
                     if new_bal < 0:
-                        print("Not enough money in account")
+                        print("\nNot enough money in account")
                         return False
                     new_line = rad.replace(old_bal, str(new_bal))
                     self.customer_data[index] = new_line
-            print(f"Withdrawal successfull! \nOld balance: {old_bal} \nNew balace: {str(new_bal)}")
+            print(f"\nWithdrawal successfull! \nOld balance: {old_bal} \nNew balace: {str(new_bal)}")
             with open(self.ctxt, "w") as f:
                 f.writelines("%s\n" % l for l in self.customer_data)
 
