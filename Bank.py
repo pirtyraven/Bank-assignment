@@ -11,7 +11,7 @@ class Bank():
     def __init__(self):
         self.name = "MyBank"
         self.customers = [] # listan kommer att fyllas på med Customer-objekt
-        self.acc_list = [] # listan kommer att fyllas på med Account-objekt
+        #self.acc_list = [] # listan kommer att fyllas på med Account-objekt
         self._load() # laddar in själva textfilen eller "databasen"
         self.load_customers() # funktionen för att fylla customerslistan med Customer-objekt
         self.load_accounts() # funktionen för att fylla acc_list-listan med Account-objekt
@@ -66,14 +66,6 @@ class Bank():
                 self.accounts.append(the_account)
                 self.accountNo.append(the_account.accountno)
                 nr_acc -= 1
-
-    def get_accounts(self):
-        Bank.load_accounts(self)
-        self.acc_list = []
-
-        for i in self.accounts:
-            account = f"{i.id} {i.accountno} {i.accounttype} {i.balance}"
-            self.acc_list.append(account)
 
     def get_account(self, pnr, acc_no):
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
@@ -237,6 +229,6 @@ class Bank():
         return str(new_id)
 
     def get_top_account(self):
-        Bank.get_accounts(self)    
+        Bank.load_accounts(self)
         newAccount = int(max(self.accountNo)) + 1
         return str(newAccount)

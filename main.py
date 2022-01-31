@@ -12,7 +12,7 @@ while inp:
           "\n2. Add new customer "
           "\n3. Change customer name "
           "\n4. Delete customer "
-          "\n5. Delete account "
+          "\n5. Delete bank account "
           "\n6. See customer information (account numbers, balance, account types) "
           "\n7. Deposit money "
           "\n8. Withdraw money "
