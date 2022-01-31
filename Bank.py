@@ -3,14 +3,10 @@ from Customer import Customer
 from Account import Account
 
 class Bank():
-    
-    #customers = []
+
     id = []
     ctxt = "customers.txt"
-    #customer_data = []
-    #accounts = []
     accountNo = []
-    #acc = []
 
     def __init__(self):
         self.name = "MyBank"
@@ -29,7 +25,6 @@ class Bank():
         return self.customer_data
 
     def load_customers(self):
-        #Bank._load(self)
         for i in self.customer_data:
             y = i.replace("#", ":").split(":")
             cstmr = Customer(y[0], y[1], y[2])
@@ -38,14 +33,10 @@ class Bank():
         return self.customers
 
     def get_customers(self):
-        #Bank.load_customers(self)
         for cstmr in self.customers:
             print(f"Name: {cstmr.name}, Social security number: {cstmr.pnr}")
 
     def get_customer(self, pnr):
-        #Bank._load(self)
-        #Bank.load_customers(self)
-        #Bank.load_accounts(self)
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
             print("\nSorry wrong format, please enter social security number as xxxxxx-xxxx")
             return False
@@ -142,12 +133,9 @@ class Bank():
                         f.writelines("%s\n" % l for l in self.customer_data)
                     print(f'\nName changed from {name} to {newname}')
                     return True
-
         else:
             print(f'\nNo customer with {pnr} exists')
             return False
-
-
     
     def remove_customer(self, pnr):
 
@@ -220,7 +208,6 @@ class Bank():
                     return True
 
     def close_account(self, pnr, acc_no):
-
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
             print("\nSorry wrong format, please enter social security number as xxxxxx-xxxx")
             return False
@@ -242,20 +229,14 @@ class Bank():
                             f.writelines("%s\n" % l for l in self.customer_data)
 
     def get_new_id(self):
-
         Bank._load(self)
-
         for i in self.customer_data:
             x = i.strip().split(":")
             self.id.append(x[0])
-        
         new_id = int(self.id[-1]) + 1
-        
         return str(new_id)
 
     def get_top_account(self):
-
         Bank.get_accounts(self)    
         newAccount = int(max(self.accountNo)) + 1
-
         return str(newAccount)
