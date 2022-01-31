@@ -1,6 +1,4 @@
-11111:First person:990383-3555:1001:debit account:3313.0#1002:debit account:100.0#1007:debit account:1330.0
+11111:TheFirst Person:990383-3555:1001:debit account:3379.0#1019:debit account:0.0
 11112:Aubrey Sigg:460383-3555:1004:debit account:400.0#1009:debit account:0.0
-11113:Tredje Person:993456-1234:1005:debit account:2009.0
-11114:Tax Them:123456-1234:1006:debit account:2005.0
-11115:kalle banka:998877-1234:1008:debit account:3555.0#1011:debit account:0.0
-11116:Per El:123123-1234:1010:debit account:0.0
+11116:Ny Person:121212-2121:1017:debit account:222.0#1018:debit account:222.0
+11117:ny ny:111111-2222:1020:debit account:0.0
