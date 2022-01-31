@@ -19,7 +19,7 @@ class Bank():
         self._load() # laddar in själva textfilen eller "databasen"
         self.load_customers() # funktionen för att fylla customerslistan med Customer-objekt
         self.load_accounts() # funktionen för att fylla acc_list-listan med Account-objekt
-           
+        
     def _load(self):
         self.customer_data = []
 
@@ -195,19 +195,25 @@ class Bank():
         with open(self.ctxt, "w") as f:
             f.writelines("%s\n" % l for l in self.customer_data)
 
-    def deposit(self, pnr, id, amount):
+    def deposit(self, pnr, acc_no, amount):
+        account_data = {}
+        acc_no_list = []
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
             print("Sorry wrong format, please enter personal number as xxxxxx-xxxx")
             return False
         else:
-            Bank._load(self)
+            for i in self.customer_data:
+                x = i.replace("#", ":").split(":")
+                account_data[x[2]] = x[3:]
+
             for rad in self.customer_data:
                 if pnr in repr(rad):
                     index = self.customer_data.index(rad)
                     r1 = rad.replace("#",":").split(":")
-                    nyindex = r1.index(id)
+                    if acc_no not in r1:
+                        return print("\nCustomer does not have account with that account number")
+                    nyindex = r1.index(acc_no)
                     old_bal = r1[nyindex+2]
-                    #print(int(old_bal[:-2]))
                     new_bal = float(old_bal) + float(amount)
                     new_line = rad.replace(old_bal, str(new_bal))
                     self.customer_data[index] = new_line
@@ -216,7 +222,7 @@ class Bank():
                 f.writelines("%s\n" % l for l in self.customer_data)
 
 
-    def withdrawal(self, pnr, id, amount):
+    def withdrawal(self, pnr, acc_no, amount):
         if re.match('[0-9]{6}-[0-9]{4}', pnr) is None:
             print("Sorry wrong format, please enter personal number as xxxxxx-xxxx")
             return False
@@ -226,9 +232,10 @@ class Bank():
                 if pnr in repr(rad):
                     index = self.customer_data.index(rad)
                     r1 = rad.replace("#",":").split(":")
-                    index2 = r1.index(id)
+                    if acc_no not in r1:
+                        return print("\nCustomer does not have account with that account number")
+                    index2 = r1.index(acc_no)
                     old_bal = r1[index2+2]
-                    #print(int(old_bal[:-2]))
                     new_bal = float(old_bal) - float(amount)
                     if new_bal < 0:
                         print("\nNot enough money in account")
@@ -281,5 +288,5 @@ class Bank():
         return str(newAccount)
 
 m = Bank()
-#m.load_accounts()
+m.withdrawal("990383-3555","101","100")
 #m.close_account("139741-6173", "1002")
